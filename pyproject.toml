@@ -28,6 +28,7 @@ classifiers = [
 python = "^3.6"
 slackclient = "^2"
 click = "^7"
+toml = "*"
 click-option-group = "*"
 
 [tool.poetry.dev-dependencies]
