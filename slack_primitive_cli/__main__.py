@@ -1,11 +1,11 @@
 import click
 
-import slackcli
-from slackcli.command import chat, files
+import slack_primitive_cli
+from slack_primitive_cli.command import chat, files
 
 
 @click.group()
-@click.version_option(version=slackcli.__version__)
+@click.version_option(version=slack_primitive_cli.__version__)
 def cli():
     pass
 
