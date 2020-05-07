@@ -1,0 +1,45 @@
+[tool.black]
+line-length = 120
+
+[tool.poetry]
+name = "slack-primitive-cli"
+version = "0.1.0"
+description = "Primitive Slack CLI"
+authors = ["yuji38kwmt <yuji38kwmt@gmail.com>"]
+maintainers = ["yuji38kwmt <yuji38kwmt@gmail.com>"]
+keywords=["slack", "cli"]
+license="MIT"
+readme="README.md"
+repository="https://github.com/yuji38kwmt/slack-primitive-cli"
+classifiers = [
+    "DEVELOPMENT STATUS :: 2 - PRE-ALPHA",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Utilities",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+slackclient = "^2"
+click = "^7"
+click-option-group = "*"
+
+[tool.poetry.dev-dependencies]
+flake8 = "*"
+pylint = "*"
+autoflake = "*"
+isort = "*"
+black = {version = "^19.10b0", allow-prereleases = true}
+
+[tool.poetry.scripts]
+slackcli = "slack_primitive_cli.__main__:cli"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
