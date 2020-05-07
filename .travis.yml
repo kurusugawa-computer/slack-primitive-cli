@@ -1,0 +1,15 @@
+dist: xenial
+language: python
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+install:
+  - pip install poetry
+  - poetry install
+
+script:
+   - poetry run flake8 slack_primitive_cli
+branches:
+  only:
+  - master
