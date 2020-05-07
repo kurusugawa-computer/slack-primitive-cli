@@ -9,7 +9,7 @@ license="MIT"
 readme="README.md"
 repository="https://github.com/yuji38kwmt/slack-primitive-cli"
 classifiers = [
-    "DEVELOPMENT STATUS :: 2 - PRE-ALPHA",
+    "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",

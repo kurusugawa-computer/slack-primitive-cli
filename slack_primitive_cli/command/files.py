@@ -20,7 +20,7 @@ from click_option_group import RequiredMutuallyExclusiveOptionGroup, optgroup
 def upload(token, channels, file, content, filename, filetype, initial_comment, thread_ts, title):
     client = slack.WebClient(token=token)
 
-    if filename is None:
+    if filename is None and file is not None:
         filename = os.path.basename(file)
 
     def _update_kwargs(key: str, value: Optional[Any]):
