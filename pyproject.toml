@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "slack-primitive-cli"
-version = "0.1.0"
+version = "0.1.1"
 description = "Primitive Slack CLI"
 authors = ["yuji38kwmt <yuji38kwmt@gmail.com>"]
 maintainers = ["yuji38kwmt <yuji38kwmt@gmail.com>"]
@@ -25,7 +25,6 @@ classifiers = [
 python = "^3.6"
 slackclient = "^2"
 click = "^7"
-toml = "*"
 click-option-group = "*"
 
 [tool.poetry.dev-dependencies]
