@@ -22,7 +22,7 @@ https://pypi.org/project/slack-primitive-cli/
 ```
 $ slackcli --token xoxb-XXXXXXX --channel "#random" --text hello
 
-$ export SLACK_API_TOKEN
+$ export SLACK_API_TOKEN=xoxb-XXXXXXX
 $ slackcli --channel "#random" --text hello
 ```
 
@@ -40,3 +40,19 @@ $ slackcli --channels "#random" --file foo.txt
 * [chat.postMessage](https://api.slack.com/methods/chat.postMessage)
 * [files.delete](https://api.slack.com/methods/files.delete)
 * [files.upload](https://api.slack.com/methods/files.upload)
+
+# Additional
+
+## Shell Completion
+`slack-primitive-cli` depends on [click](https://click.palletsprojects.com/en/7.x/), so `slack-primitive-cli` can provide tab completion.
+Bash, Zsh, and Fish are supported
+
+In order to activate shell completion, you need to execute the following script.
+
+```
+$ eval "$(_SLACKCLI_COMPLETE=source slackcli)"
+```
+
+
+See [here](https://click.palletsprojects.com/en/7.x/bashcomplete/) for details.
+
