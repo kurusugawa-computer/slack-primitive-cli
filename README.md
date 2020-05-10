@@ -1,4 +1,8 @@
 # slack-primitive-cli
+[![Build Status](https://travis-ci.org/yuji38kwmt/slack-primitive-cli.svg?branch=master)](https://travis-ci.org/yuji38kwmt/slack-primitive-cli)
+[![PyPI version](https://badge.fury.io/py/slack-primitive-cli.svg)](https://badge.fury.io/py/slack-primitive-cli)
+[![Python Versions](https://img.shields.io/pypi/pyversions/slack-primitive-cli.svg)](https://pypi.org/project/slack-primitive-cli/)
+
 `slack-primitive-cli` can execute [Slack web api methods](https://api.slack.com/methods) from command line.
 Command line argument is correspont to web api arguments, so `slack-primitive-cli` is **primitive**.
 
