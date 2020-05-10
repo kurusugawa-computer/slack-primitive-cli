@@ -24,16 +24,16 @@ https://pypi.org/project/slack-primitive-cli/
 ## Sending a message
 
 ```
-$ slackcli --token xoxb-XXXXXXX --channel "#random" --text hello
+$ slackcli chat.postMessage --token xoxb-XXXXXXX --channel "#random" --text hello
 
 $ export SLACK_API_TOKEN=xoxb-XXXXXXX
-$ slackcli --channel "#random" --text hello
+$ slackcli chat.postMessage  --channel "#random" --text hello
 ```
 
 ## Uploading files
 
 ```
-$ slackcli --channels "#random" --file foo.txt
+$ slackcli files.upload --channels "#random" --file foo.txt
 ```
 
 
