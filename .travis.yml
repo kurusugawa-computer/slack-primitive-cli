@@ -9,6 +9,7 @@ install:
   - poetry install
 
 script:
+   - poetry run mypy slack_primitive_cli
    - poetry run flake8 slack_primitive_cli
 branches:
   only:
