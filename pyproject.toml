@@ -32,13 +32,10 @@ flake8 = "*"
 autoflake = "*"
 isort = "*"
 black = {version = "^19.10b0", allow-prereleases = true}
+mypy = "*"
 
 [tool.poetry.scripts]
 slackcli = "slack_primitive_cli.__main__:cli"
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
 
 [tool.black]
 line-length = 120
@@ -52,3 +49,7 @@ multi_line_output=3
 include_trailing_comma=true
 force_grid_wrap=0
 use_parentheses=true
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+

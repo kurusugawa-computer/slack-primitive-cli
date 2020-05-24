@@ -1,5 +1,4 @@
 import os
-from typing import Any, Optional
 
 import click
 import slack
@@ -23,25 +22,16 @@ def upload(token, channels, file, content, filename, filetype, initial_comment, 
     if filename is None and file is not None:
         filename = os.path.basename(file)
 
-    def _update_kwargs(key: str, value: Optional[Any]):
-        if value is not None:
-            kwargs[key] = value
-
-    kwargs = dict(channels=channels)
-    _update_kwargs("file", file)
-    _update_kwargs("content", content)
-    _update_kwargs("filename", filename)
-    _update_kwargs("filetype", filetype)
-    _update_kwargs("initial_comment", initial_comment)
-    _update_kwargs("thread_ts", thread_ts)
-    _update_kwargs("title", title)
-
-    # Noneの引数を渡すと、以下のエラーが発生するため、Noneの引数は`files_upload`メソッドに渡さないようにする
-    # TypeError: Can not serialize value type: <class 'NoneType'>
-    if title is not None:
-        kwargs["title"] = title
-
-    response = client.files_upload(**kwargs)
+    response = client.files_upload(
+        channels=channels,
+        file=file,
+        content=content,
+        filename=filename,
+        filetype=filetype,
+        initial_comment=initial_comment,
+        thread_ts=thread_ts,
+        title=title,
+    )
     print(response)
     return response
 
