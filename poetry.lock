@@ -107,7 +107,7 @@ description = "Option groups missing in Click"
 name = "click-option-group"
 optional = false
 python-versions = ">=3.6,<4"
-version = "0.4.0"
+version = "0.5.1"
 
 [package.dependencies]
 Click = ">=7.0,<8"
@@ -365,8 +365,8 @@ click = [
     {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
 ]
 click-option-group = [
-    {file = "click-option-group-0.4.0.tar.gz", hash = "sha256:7867689533ea52cb3494a2ea02d77c42494583d99746ff1dd24674f6ec208820"},
-    {file = "click_option_group-0.4.0-py3-none-any.whl", hash = "sha256:6f1efaf1c587590eff849adbe1f633c4402598eafe0082d364479cba732003cf"},
+    {file = "click-option-group-0.5.1.tar.gz", hash = "sha256:764eb49094dc864e28afbf36c6bb140d09ef714a915c0c5972c982113ed70fab"},
+    {file = "click_option_group-0.5.1-py3-none-any.whl", hash = "sha256:b363552b81f3bc9bef2402837b08865d186bd97c2311768f7d52aaf896e384a6"},
 ]
 flake8 = [
     {file = "flake8-3.8.2-py2.py3-none-any.whl", hash = "sha256:ccaa799ef9893cebe69fdfefed76865aeaefbb94cb8545617b2298786a4de9a5"},
