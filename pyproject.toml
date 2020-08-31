@@ -31,7 +31,7 @@ click-option-group = "*"
 flake8 = "*"
 autoflake = "*"
 isort = "*"
-black = {version = "^19.10b0", allow-prereleases = true}
+black = {version = "^20.8b1", allow-prereleases = true}
 mypy = "*"
 
 [tool.poetry.scripts]
