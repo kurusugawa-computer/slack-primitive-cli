@@ -1,11 +1,11 @@
 import click
 import slack
-
+from slack_primitive_cli.common.utils import TOKEN_ENVVAR
 
 @click.command(
     name="chat.postMessage", help="Sends a message to a channel. See https://api.slack.com/methods/chat.postMessage "
 )
-@click.option("--token", envvar="SLACK_API_TOKEN", required=True)
+@click.option("--token", envvar=TOKEN_ENVVAR, required=True)
 @click.option("--channel", required=True)
 @click.option("--text", required=True)
 @click.option("--as_user", type=bool)
@@ -62,7 +62,7 @@ def postMessage(
 
 
 @click.command(name="chat.delete", help="Deletes a message. See https://api.slack.com/methods/chat.delete ")
-@click.option("--token", envvar="SLACK_API_TOKEN", required=True)
+@click.option("--token", envvar=TOKEN_ENVVAR, required=True)
 @click.option("--channel", required=True)
 @click.option("--ts", required=True)
 @click.option("--as_user", type=bool)
