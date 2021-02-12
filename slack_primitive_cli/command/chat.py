@@ -99,7 +99,9 @@ def postMessage(
 @click.option(
     "--as_user",
     type=bool,
-    help="Pass true to delete the message as the authed user with chat:write:user scope. Bot users in this context are considered authed users. If unused or false, the message will be deleted with chat:write:bot scope.",
+    help="Pass true to delete the message as the authed user with chat:write:user scope. "
+    "Bot users in this context are considered authed users. "
+    "If unused or false, the message will be deleted with chat:write:bot scope.",
 )
 def delete(token: str, channel: str, ts: str, as_user):
     client = slack.WebClient(token=token)
