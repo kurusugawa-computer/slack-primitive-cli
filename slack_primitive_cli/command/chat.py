@@ -1,7 +1,11 @@
+import logging
+
 import click
 import slack
 
-from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE
+from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE, set_logger
+
+logger = logging.getLogger(__name__)
 
 
 @click.command(
@@ -70,6 +74,7 @@ def postMessage(
     unfurl_media,
     username,
 ):
+    set_logger()
     client = slack.WebClient(token=token)
     response = client.chat_postMessage(
         channel=channel,
@@ -104,6 +109,7 @@ def postMessage(
     "If unused or false, the message will be deleted with chat:write:bot scope.",
 )
 def delete(token: str, channel: str, ts: str, as_user):
+    set_logger()
     client = slack.WebClient(token=token)
     response = client.chat_delete(channel=channel, ts=ts, as_user=as_user)
     print(response)

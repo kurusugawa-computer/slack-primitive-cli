@@ -1,10 +1,13 @@
+import logging
 import os
 
 import click
 import slack
 from click_option_group import RequiredMutuallyExclusiveOptionGroup, optgroup
 
-from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE
+from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE, my_backoff, set_logger
+
+logger = logging.getLogger(__name__)
 
 
 @click.command(name="files.upload", help="Uploads or creates a file. See https://api.slack.com/methods/files.upload ")
@@ -24,7 +27,9 @@ from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE
 @click.option("--initial_comment", help="The message text introducing the file in specified channels.")
 @click.option("--thread_ts", help="Provide another message's ts value to upload this file as a reply.")
 @click.option("--title", help="Title of file.")
+@my_backoff
 def upload(token, channels, file, content, filename, filetype, initial_comment, thread_ts, title):
+    set_logger()
     client = slack.WebClient(token=token)
 
     if filename is None and file is not None:
@@ -47,7 +52,9 @@ def upload(token, channels, file, content, filename, filetype, initial_comment, 
 @click.command(name="files.delete", help="Deletes a file. See https://api.slack.com/methods/files.delete ")
 @click.option("--token", envvar=TOKEN_ENVVAR, required=True, help=TOKEN_HELP_MESSAGE)
 @click.option("--file", required=True, help="ID of file to delete.")
+@my_backoff
 def delete(token, file):
+    set_logger()
     client = slack.WebClient(token=token)
     response = client.files_delete(file=file)
     print(response)
