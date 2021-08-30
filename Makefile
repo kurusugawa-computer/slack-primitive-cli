@@ -10,7 +10,7 @@ init:
 format:
 	poetry run autoflake  --in-place --remove-all-unused-imports  --ignore-init-module-imports --recursive ${TARGET}
 	poetry run black ${TARGET}
-	poetry run isort --verbose --recursive ${TARGET}
+	poetry run isort --verbose ${TARGET}
 
 lint:
 	poetry run mypy ${TARGET}
