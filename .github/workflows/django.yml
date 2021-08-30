@@ -1,0 +1,66 @@
+name: build executables
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  windows-build: # Windows向けビルド
+    runs-on: windows-latest
+    steps: # コマンドを上から順番に書いていく
+      - name: Checkout commit
+        uses: actions/checkout@master
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@master
+        with: { python-version: 3.9 }
+
+      - name: Upgrade pip, and install poetry, pyinstaller
+        run: python -m pip install --upgrade pip poetry PyInstaller
+
+      - name: poetry install
+        run: poetry install --no-dev
+
+      - name: build
+        run: pyinstaller slack_primitive_cli/__main__.py --onefile
+
+      - name: upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: slack-primitive-cli-windows
+          path: dist/__main__.exe
+
+  release: # 実行するジョブを書く
+    needs: [windows-build]
+    runs-on: ubuntu-latest
+
+    steps: # ビルド後の処理などを書く
+      - name: Download Windows
+        uses: actions/download-artifact@v1
+        with:
+          name: slack-primitive-cli-windows
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Zip
+        run: zip --junk-paths  slack-primitive-cli-windows ./slack-primitive-cli-windows/__main__.exe
+
+      - name: Append Binary
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./slack-primitive-cli-windows.zip
+          asset_name: slack-primitive-cli-windows.zip
+          asset_content_type: application/zip
