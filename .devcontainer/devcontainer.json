@@ -24,6 +24,7 @@
 	"runArgs": [
 		"--init",
 		"--net=host",
+		"--env=SLACK_API_TOKEN",
 	],
 	"containerEnv": {
 		"CONTAINER_WORKSPACE": "${containerWorkspaceFolder}",
