@@ -1,7 +1,7 @@
 import logging
 
 import click
-import slack
+import slack_sdk
 
 from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE, set_logger
 
@@ -75,7 +75,7 @@ def postMessage(
     username,
 ):
     set_logger()
-    client = slack.WebClient(token=token)
+    client = slack_sdk.WebClient(token=token)
     response = client.chat_postMessage(
         channel=channel,
         text=text,
@@ -110,7 +110,7 @@ def postMessage(
 )
 def delete(token: str, channel: str, ts: str, as_user):
     set_logger()
-    client = slack.WebClient(token=token)
+    client = slack_sdk.WebClient(token=token)
     response = client.chat_delete(channel=channel, ts=ts, as_user=as_user)
     print(response)
     return response

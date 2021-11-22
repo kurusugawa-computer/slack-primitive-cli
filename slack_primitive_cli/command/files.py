@@ -2,7 +2,7 @@ import logging
 import os
 
 import click
-import slack
+import slack_sdk
 from click_option_group import RequiredMutuallyExclusiveOptionGroup, optgroup
 
 from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE, my_backoff, set_logger
@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 @my_backoff
 def upload(token, channels, file, content, filename, filetype, initial_comment, thread_ts, title):
     set_logger()
-    client = slack.WebClient(token=token)
+    client = slack_sdk.WebClient(token=token)
 
     if filename is None and file is not None:
         filename = os.path.basename(file)
@@ -55,7 +55,7 @@ def upload(token, channels, file, content, filename, filetype, initial_comment, 
 @my_backoff
 def delete(token, file):
     set_logger()
-    client = slack.WebClient(token=token)
+    client = slack_sdk.WebClient(token=token)
     response = client.files_delete(file=file)
     print(response)
     return response
