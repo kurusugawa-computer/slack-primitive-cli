@@ -1,0 +1,16 @@
+{
+    "version": "0.2",
+    "ignorePaths": [
+        "**/.git/objects/**",
+        ".devcontainer/",
+        ".vscode/",
+        "LICENSE",
+        "tests/"
+    ],
+    "enabledLanguageIds": [
+        "python"
+    ],
+    "words": [
+        "pylint",
+    ]
+}
