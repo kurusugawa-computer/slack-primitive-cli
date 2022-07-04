@@ -33,7 +33,7 @@ slack-sdk = "^3"
 flake8 = "*"
 autoflake = "*"
 isort = "*"
-black = {version = "^21.11b0", allow-prereleases = true}
+black = {version = "^22.6", allow-prereleases = true}
 mypy = "*"
 
 [tool.poetry.scripts]
