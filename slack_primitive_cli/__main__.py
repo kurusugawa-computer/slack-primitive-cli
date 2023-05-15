@@ -1,7 +1,11 @@
+import logging
+
 import click
 
 import slack_primitive_cli
 from slack_primitive_cli.command import chat, files
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 @click.group()

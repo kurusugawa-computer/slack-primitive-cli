@@ -116,18 +116,9 @@ RUN set -x \
 
 # poetry
 RUN set -x \
-    && sudo -u vscode -i python -m pip install poetry \
+    && sudo -u vscode -i python -m pip install "poetry<1.5" \
     && sudo -u vscode -i /home/vscode/.local/bin/poetry config virtualenvs.in-project true
 ENV PATH=$PATH:/home/vscode/.local/bin
-
-
-# fix poetry issue (see: https://github.com/python-poetry/poetry/issues/221)
-RUN set -x \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-        language-pack-en \
-    && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-ENV LC_ALL=C.UTF-8
 
 USER vscode
 
