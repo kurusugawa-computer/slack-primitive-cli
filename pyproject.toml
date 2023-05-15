@@ -26,7 +26,7 @@ slack-sdk = "^3"
 [tool.poetry.dev-dependencies]
 flake8 = "^6"
 autoflake = "*"
-isort = "^1"
+isort = "^5"
 black = "^23"
 mypy = "^1"
 
