@@ -8,7 +8,7 @@ Command line argument is correspont to web api arguments, so `slack-primitive-cl
 
 
 # Requirements
-* Python 3.7+
+* Python 3.8.1+
 
 # Install
 
@@ -160,3 +160,6 @@ $ eval "$(_SLACKCLI_COMPLETE=source slackcli)"
 
 See [here](https://click.palletsprojects.com/en/7.x/bashcomplete/) for details.
 
+
+# Usage for Developer
+Refer to https://github.com/kurusugawa-computer/slack-primitive-cli/blob/main/README_for_developer.md .
