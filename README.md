@@ -1,5 +1,5 @@
 # slack-primitive-cli
-[![Build Status](https://travis-ci.org/yuji38kwmt/slack-primitive-cli.svg?branch=master)](https://travis-ci.org/yuji38kwmt/slack-primitive-cli)
+[![Build Status](https://travis-ci.org/kurusugawa-computer/slack-primitive-cli.svg?branch=main)](https://travis-ci.org/kurusugawa-computer/slack-primitive-cli)
 [![PyPI version](https://badge.fury.io/py/slack-primitive-cli.svg)](https://badge.fury.io/py/slack-primitive-cli)
 [![Python Versions](https://img.shields.io/pypi/pyversions/slack-primitive-cli.svg)](https://pypi.org/project/slack-primitive-cli/)
 
