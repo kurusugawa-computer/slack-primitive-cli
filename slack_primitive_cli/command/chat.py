@@ -8,15 +8,12 @@ from slack_primitive_cli.common.utils import TOKEN_ENVVAR, TOKEN_HELP_MESSAGE, s
 logger = logging.getLogger(__name__)
 
 
-@click.command(
-    name="chat.postMessage", help="Sends a message to a channel. See https://api.slack.com/methods/chat.postMessage "
-)
+@click.command(name="chat.postMessage", help="Sends a message to a channel. See https://api.slack.com/methods/chat.postMessage ")
 @click.option("--token", envvar=TOKEN_ENVVAR, required=True, help=TOKEN_HELP_MESSAGE)
 @click.option(
     "--channel",
     required=True,
-    help="Channel, private group, or IM channel to send message to. "
-    "Can be an encoded ID, or a name. See below for more details.",
+    help="Channel, private group, or IM channel to send message to. " "Can be an encoded ID, or a name. See below for more details.",
 )
 @click.option(
     "--text",
@@ -42,13 +39,11 @@ logger = logging.getLogger(__name__)
 @click.option(
     "--reply_broadcast",
     type=bool,
-    help="Used in conjunction with thread_ts and indicates "
-    "whether reply should be made visible to everyone in the channel or conversation.",
+    help="Used in conjunction with thread_ts and indicates " "whether reply should be made visible to everyone in the channel or conversation.",
 )
 @click.option(
     "--thread_ts",
-    help="Provide another message's ts value to make this message a reply. "
-    "Avoid using a reply's ts value; use its parent instead.",
+    help="Provide another message's ts value to make this message a reply. " "Avoid using a reply's ts value; use its parent instead.",
 )
 @click.option("--unfurl_links", type=bool, help="Pass true to enable unfurling of primarily text-based content.")
 @click.option("--unfurl_media", type=bool, help="Pass false to disable unfurling of media content.")
@@ -56,23 +51,23 @@ logger = logging.getLogger(__name__)
     "--username",
     help="Set your bot's user name. Must be used in conjunction with as_user set to false, otherwise ignored.",
 )
-def postMessage(
+def postMessage(  # noqa: ANN201, PLR0913
     token: str,
     channel: str,
     text: str,
-    as_user,
-    attachments,
-    blocks,
-    icon_emoji,
-    icon_url,
-    link_names,
-    mrkdwn,
-    parse,
-    reply_broadcast,
-    thread_ts,
-    unfurl_links,
-    unfurl_media,
-    username,
+    as_user,  # noqa: ANN001
+    attachments,  # noqa: ANN001
+    blocks,  # noqa: ANN001
+    icon_emoji,  # noqa: ANN001
+    icon_url,  # noqa: ANN001
+    link_names,  # noqa: ANN001
+    mrkdwn,  # noqa: ANN001
+    parse,  # noqa: ANN001
+    reply_broadcast,  # noqa: ANN001
+    thread_ts,  # noqa: ANN001
+    unfurl_links,  # noqa: ANN001
+    unfurl_media,  # noqa: ANN001
+    username,  # noqa: ANN001
 ):
     set_logger()
     client = slack_sdk.WebClient(token=token)
@@ -108,7 +103,7 @@ def postMessage(
     "Bot users in this context are considered authed users. "
     "If unused or false, the message will be deleted with chat:write:bot scope.",
 )
-def delete(token: str, channel: str, ts: str, as_user):
+def delete(token: str, channel: str, ts: str, as_user):  # noqa: ANN001, ANN201
     set_logger()
     client = slack_sdk.WebClient(token=token)
     response = client.chat_delete(channel=channel, ts=ts, as_user=as_user)

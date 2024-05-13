@@ -1,5 +1,8 @@
-ifndef TARGET
-	export TARGET:=slack_primitive_cli
+ifndef SOURCE_FILES
+	export SOURCE_FILES:=slack_primitive_cli
+endif
+ifndef TEST_FILES
+	export TEST_FILES:=tests
 endif
 .PHONY: lint format  publish init
 
@@ -8,13 +11,13 @@ init:
 	poetry install
 
 format:
-	poetry run autoflake  --in-place --remove-all-unused-imports  --ignore-init-module-imports --recursive ${TARGET}
-	poetry run black ${TARGET}
-	poetry run isort ${TARGET}
+	poetry run ruff format ${SOURCE_FILES} ${TEST_FILES}
+	poetry run ruff check ${SOURCE_FILES} ${TEST_FILES} --fix-only --exit-zero
 
 lint:
-	poetry run mypy ${TARGET}
-	poetry run flake8 ${TARGET}
+	poetry run ruff check ${SOURCE_FILES} ${TEST_FILES}
+	poetry run mypy ${SOURCE_FILES} ${TEST_FILES}
+
 
 publish:
 	poetry publish --build

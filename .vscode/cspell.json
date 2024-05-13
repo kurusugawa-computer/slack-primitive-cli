@@ -11,6 +11,7 @@
         "python"
     ],
     "words": [
-        "pylint",
+        "mrkdwn",
+        "pylint"
     ]
 }

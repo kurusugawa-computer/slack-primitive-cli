@@ -10,20 +10,20 @@ TOKEN_ENVVAR = "SLACK_API_TOKEN"
 TOKEN_HELP_MESSAGE = f"Authentication token. If not specified, refer `{TOKEN_ENVVAR}` environment variable."
 
 
-def set_logger():
+def set_logger() -> None:
     logging_formatter = "%(levelname)-8s : %(asctime)s : %(filename)s : %(name)s : %(funcName)s : %(message)s"
     logging.basicConfig(format=logging_formatter)
     logging.getLogger("slack_primitive_cli").setLevel(level=logging.DEBUG)
 
 
-def my_backoff(function):
+def my_backoff(function):  # noqa: ANN001, ANN201
     """
     タイムアウトが発生したときにリトライする. 最大5分間リトライする。
     """
 
     @functools.wraps(function)
-    def wrapped(*args, **kwargs):
-        def fatal_code(e):
+    def wrapped(*args, **kwargs):  # noqa: ANN002, ANN003, ANN202
+        def fatal_code(e):  # noqa: ANN001, ANN202
             if isinstance(e, socket.timeout):
                 return False
             elif isinstance(e, URLError):

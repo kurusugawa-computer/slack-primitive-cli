@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 @click.group()
 @click.version_option(version=slack_primitive_cli.__version__)
-def cli():
+def cli() -> None:
     pass
 
 
