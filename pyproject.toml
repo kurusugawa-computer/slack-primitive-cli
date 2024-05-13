@@ -15,29 +15,95 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8.1"
+python = "^3.9"
 click = "^8"
 click-option-group = "*"
 backoff = "*"
 slack-sdk = "^3"
 
 
-[tool.poetry.dev-dependencies]
-flake8 = "^6"
-autoflake = "*"
-isort = "^5"
-black = "^23"
-mypy = "^1"
+[tool.poetry.group.linter.dependencies]
+# pythonバージョンを指定している理由：Python3.11（開発環境）でしかlintを実行していないため
+ruff = {version="^0.4", python=">=3.11"}
+mypy = {version="^1", python=">=3.11"}
+
+
 
 [tool.poetry.scripts]
 slackcli = "slack_primitive_cli.__main__:cli"
 
-[tool.black]
-line-length = 120
+
+[tool.ruff]
+target-version = "py38"
+line-length = 150
 
 
-[tool.isort]
-line_length = 120
+[tool.ruff.lint]
+
+ignore = [
+    "G004", # `logging-f-string` : loggingでf-stringを使いたいので無視する
+    "PD901", #すでに`df`という変数をいろんなところで使っているため
+    "PD002", #すでにpandasで`inplace=True`はいろんなところで使っているため
+    "RUF001", # 全角記号など`ambiguous unicode character`も使いたいため
+    "RUF002",# 全角記号など`ambiguous unicode character`も使いたいため
+    "RUF003",# 全角記号など`ambiguous unicode character`も使いたいため
+    "PLR2004", # magic-value-comparison: listのサイズで判定するときがよくあるため
+    "ERA", # : 役立つこともあるが、コメントアウトしていないコードも警告されるので無視する
+    "PERF203", # try-except-in-loop: ループ内でtry-exceptを使うこともあるため無視する。
+    "FIX", # TODOやFIXMEを使うため無視する
+    "TD", # TODOコメントの書き方に気にしていないので無視する
+
+    # 以下のルールはコードに合っていないので無効化した
+    "RSE", # flake8-raise
+    "D", # pydocstyle, Docstringを中途半端にしか書いていないので、除外する
+    "C90", # mccabe
+    "T20", # flake8-print
+    "SLF", #  flake8-self
+    "BLE", # flake8-blind-except
+    "FBT", # flake8-boolean-trap
+    "TRY", # tryceratops
+    "COM", # flake8-commas
+    "S", # flake8-bandit
+    "EM",#flake8-errmsg
+    "EXE", # flake8-executable
+    "ICN", # flake8-import-conventions
+    "RET",#flake8-return
+    "SIM",#flake8-simplify
+    "TCH", # flake8-type-checking
+    "PTH", #pathlibを使わないコードが多いので、除外する
+    "ISC", #flake8-implicit-str-concat
+    "N", # pep8-naming
+    "PT", # flake8-pytest-style
+]
+
+
+select = [
+    "ALL",
+]
+
+
+[tool.ruff.lint.per-file-ignores]
+# テストコードはチェックを緩和する
+"tests/**.py" = [
+    "PGH",  # pygrep-hooks
+    "DTZ",  # flake8-datetimez
+    "ANN",  # flake8-annotations
+    "E501",  # line-too-long
+    "RUF100"  # unused-noqa
+]
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pyupgrade]
+# Python3.8をサポートしているため、`typing.List`などの型ヒントは警告しないようにする
+# https://beta.ruff.rs/docs/settings/#keep-runtime-typing
+keep-runtime-typing = true
+
+[tool.ruff.lint.pylint]
+max-args = 10
+
 
 [tool.poetry-dynamic-versioning]
 enable = true
