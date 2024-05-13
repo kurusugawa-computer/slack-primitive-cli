@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 @click.option("--thread_ts", help="Provide another message's ts value to upload this file as a reply.")
 @click.option("--title", help="Title of file.")
 @my_backoff
-def upload(token, channels, file, content, filename, filetype, initial_comment, thread_ts, title):
+def upload(token, channels, file, content, filename, filetype, initial_comment, thread_ts, title):  # noqa: ANN001, ANN201
     set_logger()
     client = slack_sdk.WebClient(token=token)
 
@@ -47,7 +47,7 @@ def upload(token, channels, file, content, filename, filetype, initial_comment, 
 @click.option("--token", envvar=TOKEN_ENVVAR, required=True, help=TOKEN_HELP_MESSAGE)
 @click.option("--file", required=True, help="ID of file to delete.")
 @my_backoff
-def delete(token, file):
+def delete(token, file):  # noqa: ANN001, ANN201
     set_logger()
     client = slack_sdk.WebClient(token=token)
     response = client.files_delete(file=file)
