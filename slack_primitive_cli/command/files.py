@@ -12,16 +12,10 @@ logger = logging.getLogger(__name__)
 
 @click.command(name="files.upload", help="Uploads or creates a file. See https://api.slack.com/methods/files.upload ")
 @click.option("--token", envvar=TOKEN_ENVVAR, required=True, help=TOKEN_HELP_MESSAGE)
-@click.option(
-    "--channels", required=True, help="Comma-separated list of channel names or IDs where the file will be shared."
-)
+@click.option("--channels", required=True, help="Comma-separated list of channel names or IDs where the file will be shared.")
 @optgroup.group("File contents", cls=RequiredMutuallyExclusiveOptionGroup)
-@optgroup.option(
-    "--file", help="File contents via multipart/form-data. If omitting this parameter, you must submit content."
-)
-@optgroup.option(
-    "--content", help="File contents via a POST variable. If omitting this parameter, you must provide a file."
-)
+@optgroup.option("--file", help="File contents via multipart/form-data. If omitting this parameter, you must submit content.")
+@optgroup.option("--content", help="File contents via a POST variable. If omitting this parameter, you must provide a file.")
 @click.option("--filename", help="Filename of file.")
 @click.option("--filetype", help="A file type identifier. See also https://api.slack.com/types/file#file_types .")
 @click.option("--initial_comment", help="The message text introducing the file in specified channels.")
