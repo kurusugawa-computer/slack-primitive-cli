@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 @click.option("--thread_ts", help="Provide another message's ts value to upload this file as a reply.")
 @click.option("--title", help="Title of file.")
 @my_backoff
-def upload(token, channels, file, content, filename, filetype, initial_comment, thread_ts, title):  # noqa: ANN001, ANN201
+def upload(token, channel_id, file, content, filename, filetype, initial_comment, thread_ts, title):  # noqa: ANN001, ANN201
     set_logger()
     client = slack_sdk.WebClient(token=token)
 
@@ -30,7 +30,7 @@ def upload(token, channels, file, content, filename, filetype, initial_comment, 
         filename = os.path.basename(file)
 
     response = client.files_upload_v2(
-        channel=channels,
+        channel=channel_id,
         file=file,
         content=content,
         filename=filename,
