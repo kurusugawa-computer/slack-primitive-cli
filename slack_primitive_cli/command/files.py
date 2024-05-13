@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 @click.command(name="files.upload", help="Uploads or creates a file. See https://api.slack.com/methods/files.upload ")
 @click.option("--token", envvar=TOKEN_ENVVAR, required=True, help=TOKEN_HELP_MESSAGE)
-@click.option("--channels", required=True, help="Comma-separated list of channel names or IDs where the file will be shared.")
+@click.option("--channel_id", required=True, help="Channel IDs where the file will be shared.")
 @optgroup.group("File contents", cls=RequiredMutuallyExclusiveOptionGroup)
 @optgroup.option("--file", help="File contents via multipart/form-data. If omitting this parameter, you must submit content.")
 @optgroup.option("--content", help="File contents via a POST variable. If omitting this parameter, you must provide a file.")
@@ -29,8 +29,8 @@ def upload(token, channels, file, content, filename, filetype, initial_comment, 
     if filename is None and file is not None:
         filename = os.path.basename(file)
 
-    response = client.files_upload(
-        channels=channels,
+    response = client.files_upload_v2(
+        channel=channels,
         file=file,
         content=content,
         filename=filename,
