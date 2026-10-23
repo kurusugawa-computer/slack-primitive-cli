@@ -1,37 +1,31 @@
-[tool.poetry]
+[project]
 name = "slack-primitive-cli"
-version = "0.0.0"  # `poetry-dynamic-versioning`を使ってGitHubのバージョンタグを取得している。変更不要
+dynamic = ["version"]
 description = "Primitive Slack CLI"
-authors = ["Kurusugawa Computer Inc."]
-keywords=["slack", "cli"]
-license="MIT"
-readme="README.md"
-repository="https://github.com/kurusugawa-computer/slack-primitive-cli"
-classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
-    "Intended Audience :: Developers",
-    "Topic :: Utilities",
-    "Operating System :: OS Independent",
-]
+authors = [{ name = "Kurusugawa Computer Inc." }]
+requires-python = ">=3.9,<4"
+readme = "README.md"
+license = "MIT"
+keywords = ["slack", "cli"]
+classifiers = ["Development Status :: 2 - Pre-Alpha", "Intended Audience :: Developers", "Topic :: Utilities", "Operating System :: OS Independent"]
+dependencies = ["click>=8,<9", "click-option-group", "backoff", "slack-sdk>=3,<4"]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-click = "^8"
-click-option-group = "*"
-backoff = "*"
-slack-sdk = "^3"
+[project.urls]
+Repository = "https://github.com/kurusugawa-computer/slack-primitive-cli"
 
-
-[tool.poetry.group.linter.dependencies]
-# pythonバージョンを指定している理由：Python3.11（開発環境）でしかlintを実行していないため
-ruff = {version="^0.4", python=">=3.11"}
-mypy = {version="^1", python=">=3.11"}
-
-
-
-[tool.poetry.scripts]
+[project.scripts]
 slackcli = "slack_primitive_cli.__main__:cli"
 
+[dependency-groups]
+linter = ["ruff>=0.4,<0.5", "mypy>=1,<2"]
+
+[tool.uv]
+required-version = ">=0.13.4"
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+default-groups = ["linter"]
+
+[tool.uv.dependency-groups]
+linter = { requires-python = ">=3.11" }
 
 [tool.ruff]
 target-version = "py38"
@@ -105,10 +99,16 @@ keep-runtime-typing = true
 max-args = 10
 
 
-[tool.poetry-dynamic-versioning]
-enable = true
-format = "{base}"
-
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
-build-backend = "poetry_dynamic_versioning.backend"
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.hatch.build.targets.wheel]
+packages = ["slack_primitive_cli"]
+
+[tool.uv-dynamic-versioning]
+fallback-version = "0.0.0"
+format = "{base}"

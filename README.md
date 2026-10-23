@@ -8,7 +8,7 @@ Command line argument is correspont to web api arguments, so `slack-primitive-cl
 
 
 # Requirements
-* Python 3.8.1+
+* Python 3.9+
 
 # Install
 

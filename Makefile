@@ -7,17 +7,17 @@ endif
 .PHONY: lint format  publish init
 
 init:
-	pip install poetry --upgrade
-	poetry install
+	uv sync --locked
 
 format:
-	poetry run ruff format ${SOURCE_FILES} ${TEST_FILES}
-	poetry run ruff check ${SOURCE_FILES} ${TEST_FILES} --fix-only --exit-zero
+	uv run ruff format ${SOURCE_FILES} ${TEST_FILES}
+	uv run ruff check ${SOURCE_FILES} ${TEST_FILES} --fix-only --exit-zero
 
 lint:
-	poetry run ruff check ${SOURCE_FILES} ${TEST_FILES}
-	poetry run mypy ${SOURCE_FILES} ${TEST_FILES}
+	uv run ruff check ${SOURCE_FILES} ${TEST_FILES}
+	uv run mypy ${SOURCE_FILES} ${TEST_FILES}
 
 
 publish:
-	poetry publish --build
+	uv build
+	uv publish
