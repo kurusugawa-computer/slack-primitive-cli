@@ -110,4 +110,5 @@ source = "uv-dynamic-versioning"
 packages = ["slack_primitive_cli"]
 
 [tool.uv-dynamic-versioning]
+fallback-version = "0.0.0"
 format = "{base}"
