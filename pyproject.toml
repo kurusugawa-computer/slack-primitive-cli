@@ -3,11 +3,20 @@ name = "slack-primitive-cli"
 dynamic = ["version"]
 description = "Primitive Slack CLI"
 authors = [{ name = "Kurusugawa Computer Inc." }]
-requires-python = ">=3.9,<4"
+requires-python = ">=3.12,<4"
 readme = "README.md"
 license = "MIT"
 keywords = ["slack", "cli"]
-classifiers = ["Development Status :: 2 - Pre-Alpha", "Intended Audience :: Developers", "Topic :: Utilities", "Operating System :: OS Independent"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Utilities",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+]
 dependencies = ["click>=8,<9", "click-option-group", "backoff", "slack-sdk>=3,<4"]
 
 [project.urls]
@@ -17,26 +26,25 @@ Repository = "https://github.com/kurusugawa-computer/slack-primitive-cli"
 slackcli = "slack_primitive_cli.__main__:cli"
 
 [dependency-groups]
-linter = ["ruff>=0.4,<0.5", "mypy>=1,<2"]
+linter = [
+    "ruff>=0.17.2",
+    "mypy>=2.4.0",
+]
 
 [tool.uv]
 required-version = ">=0.13.4"
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
 default-groups = ["linter"]
 
-[tool.uv.dependency-groups]
-linter = { requires-python = ">=3.11" }
-
 [tool.ruff]
-target-version = "py38"
+target-version = "py312"
 line-length = 150
-
 
 [tool.ruff.lint]
 
 ignore = [
+    "CPY001", # 既存プロジェクトではファイルごとの著作権表記を行わない
     "G004", # `logging-f-string` : loggingでf-stringを使いたいので無視する
-    "PD901", #すでに`df`という変数をいろんなところで使っているため
     "PD002", #すでにpandasで`inplace=True`はいろんなところで使っているため
     "RUF001", # 全角記号など`ambiguous unicode character`も使いたいため
     "RUF002",# 全角記号など`ambiguous unicode character`も使いたいため
@@ -75,7 +83,6 @@ select = [
     "ALL",
 ]
 
-
 [tool.ruff.lint.per-file-ignores]
 # テストコードはチェックを緩和する
 "tests/**.py" = [
@@ -86,18 +93,15 @@ select = [
     "RUF100"  # unused-noqa
 ]
 
-
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.ruff.lint.pyupgrade]
-# Python3.8をサポートしているため、`typing.List`などの型ヒントは警告しないようにする
 # https://beta.ruff.rs/docs/settings/#keep-runtime-typing
 keep-runtime-typing = true
 
 [tool.ruff.lint.pylint]
 max-args = 10
-
 
 [build-system]
 requires = ["hatchling", "uv-dynamic-versioning"]
