@@ -4,9 +4,8 @@ python:
   - "3.11"
   
 install:
-  - pip install pip --upgrade
-  - pip install "poetry<1.5"
-  - travis_retry poetry install
+  - pip install "uv>=0.13.4"
+  - travis_retry uv sync --locked
 
 script:
    - make lint
