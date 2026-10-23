@@ -1,0 +1,4 @@
+title = "slack-primitive-cli gitleaks config"
+
+[extend]
+useDefault = true
