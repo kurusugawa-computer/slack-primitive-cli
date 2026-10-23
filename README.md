@@ -1,5 +1,5 @@
 # slack-primitive-cli
-[![Build Status](https://app.travis-ci.com/kurusugawa-computer/slack-primitive-cli.svg?branch=main)](https://app.travis-ci.com/kurusugawa-computer/slack-primitive-cli)
+[![Build Status](https://github.com/kurusugawa-computer/slack-primitive-cli/actions/workflows/lint-test.yml/badge.svg)](https://github.com/kurusugawa-computer/slack-primitive-cli/actions)
 [![PyPI version](https://badge.fury.io/py/slack-primitive-cli.svg)](https://badge.fury.io/py/slack-primitive-cli)
 [![Python Versions](https://img.shields.io/pypi/pyversions/slack-primitive-cli.svg)](https://pypi.org/project/slack-primitive-cli/)
 
@@ -8,7 +8,7 @@ Command line argument is correspont to web api arguments, so `slack-primitive-cl
 
 
 # Requirements
-* Python 3.9+
+* Python 3.12+
 
 # Install
 
